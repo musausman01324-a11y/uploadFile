@@ -1,0 +1,195 @@
+
+    :root {
+      --bg: #0a0c10;
+      --dark-green: #0d1a14;
+      --felt: #0a5c2e;
+      --highlight: #d4af37;
+      --gold-light: #f0d47f;
+      --text: #e0e0e5;
+      --text-light: #a0a0b0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 780px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, #000000 0%, var(--dark-green) 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(212,175,55,0.07) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .table-glow {
+      position: absolute;
+      width: 900px;
+      height: 450px;
+      background: var(--felt);
+      border-radius: 24px;
+      border: 28px solid #222;
+      box-shadow: 
+        0 0 120px rgba(10, 92, 46, 0.9),
+        inset 0 0 80px rgba(0,0,0,0.8),
+        0 0 0 1px #333;
+      transform: perspective(1200px) rotateX(8deg) translateY(60px) scale(0.92);
+      z-index: 0;
+    }
+
+    .balls {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ball {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      box-shadow: 
+        inset -8px -8px 12px rgba(0,0,0,0.7),
+        0 0 20px rgba(255,255,255,0.15);
+      animation: float 14s infinite ease-in-out;
+    }
+
+    .ball.white   { background: #f8f8f8; top: 28%; left: 18%; animation-delay: 0s; }
+    .ball.red     { background: #c62828; top: 42%; left: 34%; animation-delay: 2.4s; }
+    .ball.yellow  { background: #f9c74f; top: 55%; left: 58%; animation-delay: 4.8s; }
+    .ball.black   { background: #111;    top: 38%; left: 72%; animation-delay: 7.2s; }
+
+    @keyframes float {
+      0%,100%   { transform: translate(0, 0) rotate(0deg); }
+      50%       { transform: translate(14px, -18px) rotate(6deg); }
+    }
+
+    .content {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 1100px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4.2rem, 12vw, 11rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.88;
+      margin-bottom: 0.1em;
+      background: linear-gradient(90deg, #e8c547, #f0d47f, #e8c547);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 100%;
+      animation: shine 8s linear infinite;
+    }
+
+    @keyframes shine {
+      0%   { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    .tagline {
+      font-size: clamp(1.4rem, 4vw, 2.1rem);
+      font-weight: 400;
+      color: var(--text-light);
+      margin: 1.2rem 0 2.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 2.4rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      letter-spacing: 0.4px;
+    }
+
+    .btn-primary {
+      background: var(--highlight);
+      color: #0f141a;
+      box-shadow: 0 8px 30px rgba(212,175,55,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(212,175,55,0.5);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--highlight);
+      color: var(--highlight);
+    }
+
+    .btn-outline:hover {
+      background: var(--highlight);
+      color: #0f141a;
+      transform: translateY(-4px);
+    }
+
+    /* Small decorative cue chalk marks */
+    .chalk {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #eee;
+      border-radius: 50%;
+      opacity: 0.15;
+      filter: blur(1.5px);
+    }
+
+    .chalk-1 { top: 18%; left: 12%; }
+    .chalk-2 { bottom: 22%; right: 15%; }
+    .chalk-3 { top: 65%; right: 28%; }
+
+    @media (max-width: 768px) {
+      .table-glow {
+        width: 720px;
+        height: 360px;
+        border-width: 22px;
+        transform: perspective(1000px) rotateX(10deg) translateY(80px) scale(0.88);
+      }
+      h1 { font-size: 6.8rem; }
+      .btn { padding: 0.9rem 2rem; font-size: 1rem; }
+    }
+
+    @media (max-width: 520px) {
+      .table-glow { width: 92vw; height: 46vw; border-width: 18px; }
+      h1 { font-size: 5.2rem; }
+    }
